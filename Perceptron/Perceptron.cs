@@ -8,6 +8,6 @@ namespace Perceptron
 {
     class Perceptron
     {
-
+        
     }
 }
