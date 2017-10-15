@@ -46,7 +46,7 @@ namespace Perceptron
             grphcs = this.CreateGraphics();
             Grid.setGrphcs(grphcs);
             Grid.clearGrid();
-            Grid.draw();
+            Grid.drawGridOnly();
             //grphcs.DrawRectangle(myPen, 0, 0, 400, 400);
         }
 
@@ -54,7 +54,7 @@ namespace Perceptron
         {
             if (e.Button == MouseButtons.Left)
                 Grid.getInput(e.X, e.Y);
-            Grid.draw();
+            Grid.drawGridOnly();
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -62,13 +62,18 @@ namespace Perceptron
             if (e.Button == MouseButtons.Left)
             {
                 Grid.getInput(e.X, e.Y);
-                Grid.draw();
+                Grid.drawGridOnly();
             }
         }
 
         private void ClearBtn_Click(object sender, EventArgs e)
         {
             Grid.clearGrid();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Grid.moveTheDrawedToCorner();
         }
     }
 }
