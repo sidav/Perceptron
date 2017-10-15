@@ -93,8 +93,7 @@ namespace Perceptron
             int lowm = getLowermostFilledCell();
             int width = rightm - leftm + 1;
             int height = lowm - upm + 1;
-            Console.Write("\nwh: " + width + ", " + height);
-            bool[,] imageToMove = new bool[width+1, height+1];
+            bool[,] imageToMove = new bool[width, height];
             for (int i = 0; i < width; i++)
                 for (int j = 0; j < height; j++)
                 {
@@ -106,6 +105,35 @@ namespace Perceptron
             for (int i = 0; i < width; i++)
                 for (int j = 0; j < height; j++)
                     input[i, j] = imageToMove[i, j];
+            redrawCells();
+            drawGridOnly();
+        }
+
+        public static void scaletheDrawed()
+        {
+            int leftm = getLeftmostFilledCell();
+            int rightm = getRightmostFilledCell();
+            int upm = getUppermostFilledCell();
+            int lowm = getLowermostFilledCell();
+            int width = rightm - leftm + 1;
+            int height = lowm - upm + 1;
+            bool[,] imageToMove = new bool[width+1, height+1];
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                {
+                    imageToMove[i, j] = input[i + leftm, j + upm];
+                }
+            for (int i = 0; i < gridSize; i++)
+                for (int j = 0; j < gridSize; j++)
+                    input[i, j] = false;
+
+            //scaling: 
+            int vertScaleFactor = (int)(gridSize / height);
+            int HorizScaleFactor = (int)(gridSize / width);
+            Console.Write("\nwh: " + vertScaleFactor + ", " + HorizScaleFactor);
+            for (int i = 0; i < gridSize; i++)
+                for (int j = 0; j < gridSize; j++)
+                    input[i, j] = imageToMove[i/HorizScaleFactor, j/vertScaleFactor];
             redrawCells();
             drawGridOnly();
         }
