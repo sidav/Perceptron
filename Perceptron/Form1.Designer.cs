@@ -33,6 +33,7 @@
             this.ClearBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // RecognizeBtn
@@ -43,6 +44,7 @@
             this.RecognizeBtn.TabIndex = 0;
             this.RecognizeBtn.Text = "Распознать";
             this.RecognizeBtn.UseVisualStyleBackColor = true;
+            this.RecognizeBtn.Click += new System.EventHandler(this.RecognizeBtn_Click);
             // 
             // TeachBtn
             // 
@@ -52,6 +54,7 @@
             this.TeachBtn.TabIndex = 1;
             this.TeachBtn.Text = "Обучить";
             this.TeachBtn.UseVisualStyleBackColor = true;
+            this.TeachBtn.Click += new System.EventHandler(this.TeachBtn_Click);
             // 
             // ClearBtn
             // 
@@ -65,7 +68,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(156, 410);
+            this.button1.Location = new System.Drawing.Point(211, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 36);
             this.button1.TabIndex = 3;
@@ -75,7 +78,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(156, 452);
+            this.button2.Location = new System.Drawing.Point(211, 452);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 35);
             this.button2.TabIndex = 4;
@@ -83,11 +86,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(105, 422);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Здесь будет ответ";
+            this.label1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 499);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ClearBtn);
@@ -100,6 +114,7 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -110,6 +125,7 @@
         private System.Windows.Forms.Button ClearBtn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -16,6 +16,7 @@ namespace Perceptron
         static Graphics grphcs;
         static SolidBrush myBrush;
         static Pen myPen;
+        Perceptron prcp;
         //myPen = new Pen(Color.FromArgb(255, r, g, b)); 
 
         public Form1()
@@ -43,6 +44,7 @@ namespace Perceptron
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            prcp = new Perceptron();
             grphcs = this.CreateGraphics();
             Grid.setGrphcs(grphcs);
             Grid.clearGrid();
@@ -69,6 +71,7 @@ namespace Perceptron
         private void ClearBtn_Click(object sender, EventArgs e)
         {
             Grid.clearGrid();
+            label1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -79,6 +82,22 @@ namespace Perceptron
         private void button2_Click(object sender, EventArgs e)
         {
             Grid.scaletheDrawed();
+        }
+
+        private void RecognizeBtn_Click(object sender, EventArgs e)
+        {
+            int res = prcp.Recognize();
+            if (res == 0)
+                label1.Text = "Я думаю, это А";
+            else
+                label1.Text = "Я думаю, это Б";
+            label1.Visible = true;
+        }
+
+        private void TeachBtn_Click(object sender, EventArgs e)
+        {
+            prcp.DeltaRule();
+            label1.Text = "Наказание совершено.";
         }
     }
 }

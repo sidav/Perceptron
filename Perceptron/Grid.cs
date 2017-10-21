@@ -9,9 +9,9 @@ namespace Perceptron
 {
     class Grid
     {
-        static bool[,] input;// = new bool[80, 80];
+        public static bool[,] input;// = new bool[80, 80];
         const int cellSize = Form1.cellSize;
-        const int gridSize = 400 / cellSize;
+        public const int gridSize = 400 / cellSize;
         static Graphics g;
         static SolidBrush myBrush;
         static Pen myPen;
@@ -19,6 +19,13 @@ namespace Perceptron
         public static void setGrphcs(Graphics gr)
         {
             g = gr;
+        }
+
+        static int round(double a)
+        {
+            if (a - (int)a >= 0.5)
+                return (int)a + 1;
+            else return (int)a;
         }
 
         public static void setColor(int r, int g, int b)
@@ -128,12 +135,13 @@ namespace Perceptron
                     input[i, j] = false;
 
             //scaling: 
-            int vertScaleFactor = (int)(gridSize / height);
-            int HorizScaleFactor = (int)(gridSize / width);
-            Console.Write("\nwh: " + vertScaleFactor + ", " + HorizScaleFactor);
+            double VertScaleFactor = (double)gridSize / (double)height;
+            double HorizScaleFactor = (double)gridSize / (double)width;
+            Console.Write("\nWidth/Height: " + width + "/" + height);
+            Console.Write("\nHor/Vert Scale Factor: " + HorizScaleFactor + "/" + VertScaleFactor);
             for (int i = 0; i < gridSize; i++)
                 for (int j = 0; j < gridSize; j++)
-                    input[i, j] = imageToMove[i/HorizScaleFactor, j/vertScaleFactor];
+                    input[i, j] = imageToMove[round(i/HorizScaleFactor), round(j/VertScaleFactor)];
             redrawCells();
             drawGridOnly();
         }
