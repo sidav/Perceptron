@@ -56,6 +56,17 @@ namespace Perceptron
             g.FillRectangle(myBrush, rx * cellSize, ry * cellSize, cellSize, cellSize);
         }
 
+        public static void eraseInput(int x, int y)
+        {
+            int rx = (int)(x / cellSize);
+            int ry = (int)(y / cellSize);
+            if (rx < 0 || ry < 0 || rx >= gridSize || ry >= gridSize)
+                return;
+            input[rx, ry] = false;
+            setColor(255, 255, 255);
+            g.FillRectangle(myBrush, rx * cellSize, ry * cellSize, cellSize, cellSize);
+        }
+
         public static int getLeftmostFilledCell()
         {
             for (int i = 0; i < gridSize; i++)

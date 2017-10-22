@@ -56,16 +56,18 @@ namespace Perceptron
         {
             if (e.Button == MouseButtons.Left)
                 Grid.getInput(e.X, e.Y);
+            if (e.Button == MouseButtons.Right)
+                Grid.eraseInput(e.X, e.Y);
             Grid.drawGridOnly();
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
                 Grid.getInput(e.X, e.Y);
-                Grid.drawGridOnly();
-            }
+            if (e.Button == MouseButtons.Right)
+                Grid.eraseInput(e.X, e.Y);
+            Grid.drawGridOnly();
         }
 
         private void ClearBtn_Click(object sender, EventArgs e)
@@ -77,6 +79,8 @@ namespace Perceptron
         private void button1_Click(object sender, EventArgs e)
         {
             Grid.moveTheDrawedToCorner();
+            Grid.scaletheDrawed();
+            TeachBtn.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -88,16 +92,27 @@ namespace Perceptron
         {
             int res = prcp.Recognize();
             if (res == 0)
-                label1.Text = "Я думаю, это А";
+                label1.Text = "Я думаю, это "+prcp.category1+".";
             else
-                label1.Text = "Я думаю, это Б";
+                label1.Text = "Я думаю, это "+prcp.category2+".";
             label1.Visible = true;
         }
 
         private void TeachBtn_Click(object sender, EventArgs e)
         {
             prcp.DeltaRule();
-            label1.Text = "Наказание совершено.";
+            label1.Text += "\nДельта-правило применено.";
+            TeachBtn.Enabled = false;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            prcp.setCat1(textBox1.Text);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            prcp.setCat2(textBox2.Text);
         }
     }
 }
